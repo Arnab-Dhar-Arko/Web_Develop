@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Registration</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; color: #333; }
+        header, footer { background: #222; color: white; text-align: center; padding: 15px 0; font-size: 1.2em; }
+        .main { padding: 20px; max-width: 1200px; margin: 20px auto; background: white; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); border-radius: 8px; }
+        h1, h2 { text-align: center; color: #444; }
+        .bikes-container { margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .bike-card { padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); background: #fff; }
+        .bike-card img { width: 100%; height: auto; border-radius: 5px; margin-bottom: 10px; }
+        .bike-card h3 { margin: 0; font-size: 1.4em; color: #007BFF; }
+        .bike-card p { margin: 10px 0; color: #555; }
+        .bike-card button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; }
+        .bike-card button:hover { background-color: #0056b3; }
+        .bike-details { margin-top: 30px; text-align: center; }
+        .bike-details img { max-width: 300px; height: auto; border-radius: 5px; }
+        footer { margin-top: 20px; padding: 10px; font-size: 0.9em; color: #bbb; }
+
+
+
+        .back-link {
+    position: fixed; /* Keeps the link visible at all times */
+    bottom: 20px; /* Distance from the bottom */
+    right: 20px; /* Distance from the right edge */
+    background-color: #f0f0f0; /* Light background for subtlety */
+    border: 2px solid #0073e6; /* Blue border for emphasis */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px 15px; /* Inner spacing for clickable area */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    font-family: 'Verdana', sans-serif; /* Modern font for clean look */
+}
+
+.back-link a {
+    text-decoration: none; /* Remove underline */
+    color: #0073e6; /* Blue text color */
+    font-size: 16px; /* Adjust text size for readability */
+    font-weight: bold; /* Emphasize text */
+    transition: color 0.3s, text-shadow 0.3s; /* Smooth hover effect */
+}
+
+.back-link a:hover {
+    color: #005bb5; /* Darker blue on hover */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3); /* Subtle glow effect */
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bike Rental Service</h1>
+    </header>
+    <div class="main">
+        <h2>Available Bikes</h2>
+        <div id="bikesContainer" class="bikes-container"></div>
+
+        <div id="bikeDetails" class="bike-details" style="display: none;">
+            <h2>Bike Details</h2>
+            <img id="bikeImage" src="" alt="Bike Image">
+            <h3 id="bikeModel"></h3>
+            <p id="bikeManufacturer"></p>
+            <p id="bikeGear"></p>
+            <p id="bikeGearManufacturer"></p>
+            <p id="bikeSize"></p>
+            <p id="bikeDetailsText"></p>
+            <button onclick="closeDetails()">Close</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Bike Rental Service. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const apiUrl = 'https://www.cc.puv.fi/~hmh/fed/fedApi/bikes/';
+
+        // Fetch and display all bikes
+        async function fetchBikes() {
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('Failed to fetch bikes data.');
+                const bikes = await response.json();
+
+                const bikesContainer = document.getElementById('bikesContainer');
+                bikesContainer.innerHTML = '';
+
+                bikes.forEach(bike => {
+                    const bikeCard = document.createElement('div');
+                    bikeCard.className = 'bike-card';
+                    bikeCard.innerHTML = `
+                        <img src="${bike.img_url}" alt="${bike.model}">
+                        <h3>${bike.model}</h3>
+                        <p>Manufacturer: ${bike.manuf}</p>
+                        <p>Gear: ${bike.gear}</p>
+                        <button onclick="fetchBikeDetails(${bike.id})">View Details</button>
+                    `;
+                    bikesContainer.appendChild(bikeCard);
+                });
+            } catch (error) {
+                console.error('Error fetching bikes:', error);
+                alert('Could not load bike data. Please try again later.');
+            }
+        }
+
+        // Fetch details of a specific bike
+        async function fetchBikeDetails(id) {
+            try {
+                const response = await fetch(`${apiUrl}?id=${id}`);
+                if (!response.ok) throw new Error('Failed to fetch bike details.');
+                const bike = await response.json();
+
+                document.getElementById('bikeImage').src = bike.img_url;
+                document.getElementById('bikeModel').textContent = `Model: ${bike.model}`;
+                document.getElementById('bikeManufacturer').textContent = `Manufacturer: ${bike.manuf}`;
+                document.getElementById('bikeGear').textContent = `Gear: ${bike.gear}`;
+                document.getElementById('bikeGearManufacturer').textContent = `Gear Manufacturer: ${bike.gear_manuf}`;
+                document.getElementById('bikeSize').textContent = `Size: ${bike.size}`;
+                document.getElementById('bikeDetailsText').textContent = `Details: ${bike.details}`;
+
+                document.getElementById('bikeDetails').style.display = 'block';
+            } catch (error) {
+                console.error('Error fetching bike details:', error);
+                alert('Could not load bike details. Please try again later.');
+            }
+        }
+
+        // Close the details section
+        function closeDetails() {
+            document.getElementById('bikeDetails').style.display = 'none';
+        }
+
+        // Initial fetch of bikes
+        fetchBikes();
+    </script>
+    <section class="back-link">
+        <a href="index.html">Back to Home</a>
+    </section>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+    }
+    
+    header, footer {
+        background: #222;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        font-size: 1.2em;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+    
+    nav ul li {
+        margin: 0 20px;
+    }
+    
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+    
+    nav ul li a:hover {
+        color: #00bfff;
+    }
+    
+    .main {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    
+    section {
+        margin-bottom: 40px;
+    }
+    
+    h2 {
+        color: #444;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+    }
+    
+    footer p {
+        margin: 0;
+        font-size: 0.9em;
+        color: #bbb;
+    }
+    
+    .back-link {
+        display: block;
+        margin-top: 30px;
+        text-align: center;
+    }
+    
+    .back-link a {
+        color: #007BFF;
+        text-decoration: none;
+        font-size: 1em;
+        transition: color 0.3s ease;
+    }
+    
+    .back-link a:hover {
+        color: #0056b3;
+    }
+    
+    .contact-info {
+        margin-bottom: 25px;
+        padding: 15px;
+        background: #f1f1f1;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-size: 1em;
+    }
+    
+    .contact-form input, .contact-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .contact-form textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+    
+    .contact-form button {
+        padding: 12px 25px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: bold;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .contact-form button:hover {
+        background-color: #0056b3;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .messages-container {
+        margin-top: 40px;
+        padding: 15px;
+        background: #f1f1f1;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .message {
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1em;
+        color: #555;
+    }
+    
+    .message:last-child {
+        border-bottom: none;
+    }
+    
+    .message button {
+        padding: 6px 15px;
+        background-color: #FF4D4D;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 0.9em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .message button:hover {
+        background-color: #d11a2a;
+    }
+</style>
+    
+</head>
+<body>
+    <header>
+        <h1>Contact Us</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="service.html">Service</a></li>
+                <li><a href="price.html">Price</a></li>
+                <li><a href="our_bike.html">Our Bike</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="registration.html">Registration</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main">
+        <section class="contact-info">
+            <h2>Contact Information</h2>
+            <p>If you have any questions, feedback, or need assistance, feel free to reach out to us using the contact details below or by filling out the contact form.</p>
+            <p><strong>Address:</strong> 123 Bike Street, Cycle City, XY 45678</p>
+            <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+            <p><strong>Email:</strong> support@bikerentals.com</p>
+        </section>
+        <section class="contact-form">
+            <h2>Contact Form</h2>
+            <form id="contactForm">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    
+        <section class="messages-container">
+            <h2>Received Messages</h2>
+            <div id="messages"></div>
+        </section>
+    
+        <script>
+            const apiUrl = 'https://www.cc.puv.fi/~hmh/fed/fedApi/message';
+    
+            // Handle form submission to send a message
+            document.getElementById('contactForm').addEventListener('submit', async (e) => {
+                e.preventDefault(); // Prevent default form submission
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+    
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ name, email, message }),
+                    });
+    
+                    if (response.ok) {
+                        alert('Message sent successfully!');
+                        fetchMessages(); // Refresh the messages
+                        document.getElementById('contactForm').reset(); // Clear the form
+                    } else {
+                        alert('Failed to send the message. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Error sending message:', error);
+                    alert('An error occurred. Please try again later.');
+                }
+            });
+    
+            // Fetch and display messages
+            async function fetchMessages() {
+                try {
+                    const response = await fetch(apiUrl);
+                    if (response.ok) {
+                        const data = await response.json();
+                        const messagesContainer = document.getElementById('messages');
+                        messagesContainer.innerHTML = ''; // Clear previous messages
+    
+                        data.forEach((msg, index) => {
+                            const messageElement = document.createElement('div');
+                            messageElement.className = 'message';
+                            messageElement.innerHTML = `
+                                <span>${index + 1}: ${msg.message}</span>
+                                <button onclick="deleteMessage(${index})">Delete</button>
+                            `;
+                            messagesContainer.appendChild(messageElement);
+                        });
+                    } else {
+                        console.error('Failed to fetch messages.');
+                    }
+                } catch (error) {
+                    console.error('Error fetching messages:', error);
+                }
+            }
+    
+            // Delete a specific message
+            async function deleteMessage(index) {
+                try {
+                    const response = await fetch(`${apiUrl}/${index}`, { method: 'DELETE' });
+                    if (response.ok) {
+                        alert('Message deleted successfully!');
+                        fetchMessages(); // Refresh messages
+                    } else {
+                        alert('Failed to delete the message.');
+                    }
+                } catch (error) {
+                    console.error('Error deleting message:', error);
+                }
+            }
+    
+            // Initial fetch of messages
+            fetchMessages();
+        </script>
+
+</body>
+</html>
